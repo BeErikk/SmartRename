@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\SmartRenameLibUnitTests\MockSmartRenameItem.cpp" />
+    <ClCompile Include="..\SmartRenameLibUnitTests\MockSmartRenameManagerEvents.cpp" />
+    <ClCompile Include="..\SmartRenameLibUnitTests\MockSmartRenameRegExEvents.cpp" />
+    <ClCompile Include="..\SmartRenameLibUnitTests\SmartRenameManagerTests.cpp" />
+    <ClCompile Include="..\SmartRenameLibUnitTests\SmartRenameRegExTests.cpp" />
+    <ClCompile Include="..\SmartRenameLibUnitTests\TestFileHelper.cpp" />
+    <ClCompile Include="smartrename_pch.cpp">
+      <Filter>precompiled</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SmartRenameLibUnitTests\MockSmartRenameItem.h" />
+    <ClInclude Include="..\SmartRenameLibUnitTests\MockSmartRenameManagerEvents.h" />
+    <ClInclude Include="..\SmartRenameLibUnitTests\MockSmartRenameRegExEvents.h" />
+    <ClInclude Include="..\SmartRenameLibUnitTests\TestFileHelper.h" />
+    <ClInclude Include="smartrename_pch.h">
+      <Filter>precompiled</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="precompiled">
+      <UniqueIdentifier>{f0b678d0-6f36-45c0-a982-9a67525c6cfd}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

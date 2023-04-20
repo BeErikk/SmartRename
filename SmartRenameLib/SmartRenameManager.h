@@ -1,7 +1,8 @@
 #pragma once
-#include <vector>
-#include <map>
-#include "srwlock.h"
+
+//#include <vector>
+//#include <map>
+//#include "srwlock.h"
 
 class CSmartRenameManager :
     public ISmartRenameManager,
@@ -105,8 +106,8 @@ protected:
         DWORD cookie;
     };
 
-    CComPtr<ISmartRenameItemFactory> m_spItemFactory;
-    CComPtr<ISmartRenameRegEx> m_spRegEx;
+    ATL::CComPtr<ISmartRenameItemFactory> m_spItemFactory;
+    ATL::CComPtr<ISmartRenameRegEx> m_spRegEx;
 
     _Guarded_by_(m_lockEvents) std::vector<RENAME_MGR_EVENT> m_renameManagerEvents;
     _Guarded_by_(m_lockItems) std::map<int, ISmartRenameItem*> m_renameItems;

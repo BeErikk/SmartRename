@@ -13,31 +13,31 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="precompiled">
+      <UniqueIdentifier>{699bd91c-3ec5-404f-841b-2ace421303e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="..\SmartRenameTest\SmartRenameTest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\SmartRenameTest\resource.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SmartRenameTest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="smartrename_pch.h">
+      <Filter>precompiled</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
+    <ClCompile Include="..\SmartRenameTest\SmartRenameTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SmartRenameTest.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="smartrename_pch.cpp">
+      <Filter>precompiled</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="SmartRenameTest.rc">
+    <ResourceCompile Include="..\SmartRenameTest\SmartRenameTest.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
   </ItemGroup>

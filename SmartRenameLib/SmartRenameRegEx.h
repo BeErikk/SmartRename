@@ -1,8 +1,9 @@
 #pragma once
-#include "stdafx.h"
-#include <vector>
-#include <string>
-#include "srwlock.h"
+
+//#include "smartrename_pch.h"
+//#include <vector>
+//#include <string>
+//#include "srwlock.h"
 
 #define DEFAULT_FLAGS MatchAllOccurrences
 

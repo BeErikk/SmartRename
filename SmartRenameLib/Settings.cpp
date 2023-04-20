@@ -1,7 +1,10 @@
+#include "smartrename_pch.h"
+#include "common.h"
 
-#include "stdafx.h"
-#include <commctrl.h>
-#include "Settings.h"
+#include "settings.h"
+#include "smartrenameinterfaces.h"
+
+//#include <commctrl.h>
 
 const wchar_t c_rootRegPath[] = L"Software\\SmartRename";
 const wchar_t c_mruSearchRegPath[] = L"SearchMRU";

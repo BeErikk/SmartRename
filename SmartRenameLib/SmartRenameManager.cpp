@@ -1,12 +1,17 @@
-#include "stdafx.h"
-#include "SmartRenameManager.h"
-#include "SmartRenameRegEx.h" // Default RegEx handler
-#include <algorithm>
-#include <shlobj.h>
-#include <versionhelpers.h>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "smartrenameinterfaces.h"
+#include "srwlock.h"
+#include "smartrenamemanager.h"
+#include "smartrenameregex.h" // Default RegEx handler
 #include "helpers.h"
-#include <filesystem>
-#include <vector>
+
+//#include <algorithm>
+//#include <shlobj.h>
+//#include <versionhelpers.h>
+//#include <filesystem>
+//#include <vector>
 
 namespace fs = std::filesystem;
 
@@ -342,7 +347,7 @@ struct WorkerThreadData
     HANDLE startEvent = nullptr;
     HANDLE cancelEvent = nullptr;
     HWND hwndParent = nullptr;
-    CComPtr<ISmartRenameManager> spsrm;
+    ATL::CComPtr<ISmartRenameManager> spsrm;
 };
 
 // Msg-only worker window proc for communication from our worker threads
@@ -379,7 +384,7 @@ LRESULT CSmartRenameManager::_WndProc(_In_ HWND hwnd, _In_ UINT msg, _In_ WPARAM
     case SRM_REGEX_ITEM_UPDATED:
     {
         int id = static_cast<int>(lParam);
-        CComPtr<ISmartRenameItem> spItem;
+        ATL::CComPtr<ISmartRenameItem> spItem;
         if (SUCCEEDED(GetItemById(id, &spItem)))
         {
             _OnUpdate(spItem);
@@ -502,11 +507,11 @@ DWORD WINAPI CSmartRenameManager::s_fileOpWorkerThread(_In_ void* pv)
             // Wait to be told we can begin
             if (WaitForSingleObject(pwtd->startEvent, INFINITE) == WAIT_OBJECT_0)
             {
-                CComPtr<ISmartRenameRegEx> spRenameRegEx;
+                ATL::CComPtr<ISmartRenameRegEx> spRenameRegEx;
                 if (SUCCEEDED(pwtd->spsrm->get_renameRegEx(&spRenameRegEx)))
                 {
                     // Create IFileOperation interface
-                    CComPtr<IFileOperation> spFileOp;
+                    ATL::CComPtr<IFileOperation> spFileOp;
                     if (SUCCEEDED(CoCreateInstance(CLSID_FileOperation, nullptr, CLSCTX_INPROC_SERVER, IID_PPV_ARGS(&spFileOp))))
                     {
                         DWORD flags = 0;
@@ -523,7 +528,7 @@ DWORD WINAPI CSmartRenameManager::s_fileOpWorkerThread(_In_ void* pv)
 
                         for (UINT u = 0; u < itemCount; u++)
                         {
-                            CComPtr<ISmartRenameItem> spItem;
+                            ATL::CComPtr<ISmartRenameItem> spItem;
                             if (SUCCEEDED(pwtd->spsrm->GetItemByIndex(u, &spItem)))
                             {
                                 UINT depth = 0;
@@ -537,7 +542,7 @@ DWORD WINAPI CSmartRenameManager::s_fileOpWorkerThread(_In_ void* pv)
                         {
                             for (auto it : matrix[v])
                             {
-                                CComPtr<ISmartRenameItem> spItem;
+                                ATL::CComPtr<ISmartRenameItem> spItem;
                                 if (SUCCEEDED(pwtd->spsrm->GetItemByIndex(it, &spItem)))
                                 {
                                     bool shouldRename = false;
@@ -546,7 +551,7 @@ DWORD WINAPI CSmartRenameManager::s_fileOpWorkerThread(_In_ void* pv)
                                         PWSTR newName = nullptr;
                                         if (SUCCEEDED(spItem->get_newName(&newName)))
                                         {
-                                            CComPtr<IShellItem> spShellItem;
+                                            ATL::CComPtr<IShellItem> spShellItem;
                                             if (SUCCEEDED(spItem->get_shellItem(&spShellItem)))
                                             {
                                                 spFileOp->RenameItem(spShellItem, newName, nullptr);
@@ -651,7 +656,7 @@ DWORD WINAPI CSmartRenameManager::s_regexWorkerThread(_In_ void* pv)
             // Wait to be told we can begin
             if (WaitForSingleObject(pwtd->startEvent, INFINITE) == WAIT_OBJECT_0)
             {
-                CComPtr<ISmartRenameRegEx> spRenameRegEx;
+                ATL::CComPtr<ISmartRenameRegEx> spRenameRegEx;
                 if (SUCCEEDED(pwtd->spsrm->get_renameRegEx(&spRenameRegEx)))
                 {
                     DWORD flags = 0;
@@ -671,7 +676,7 @@ DWORD WINAPI CSmartRenameManager::s_regexWorkerThread(_In_ void* pv)
                             break;
                         }
 
-                        CComPtr<ISmartRenameItem> spItem;
+                        ATL::CComPtr<ISmartRenameItem> spItem;
                         if (SUCCEEDED(pwtd->spsrm->GetItemByIndex(u, &spItem)))
                         {
                             int id = -1;

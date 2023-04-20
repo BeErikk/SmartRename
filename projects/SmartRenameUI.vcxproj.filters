@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\SmartRenameUI\SmartRenameUI.cpp" />
+    <ClCompile Include="smartrename_pch.cpp">
+      <Filter>precompiled</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SmartRenameUI\SmartRenameUI.h" />
+    <ClInclude Include="smartrename_pch.h">
+      <Filter>precompiled</Filter>
+    </ClInclude>
+    <ClInclude Include="..\SmartRenameUI\resource.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="precompiled">
+      <UniqueIdentifier>{c4b77c9f-a0e6-473f-b634-cac46e6ef6ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{1783f25b-c085-46de-b421-ca960de2598c}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\SmartRenameUI\Rename.ico">
+      <Filter>Resources</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\SmartRenameUI\SmartRenameUI.rc">
+      <Filter>Resources</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>

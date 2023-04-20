@@ -1,7 +1,8 @@
 #pragma once
-#include "stdafx.h"
-#include "SmartRenameInterfaces.h"
-#include "srwlock.h"
+
+//#include "smartrename_pch.h"
+//#include "SmartRenameInterfaces.h"
+//#include "srwlock.h"
 
 class CSmartRenameItem :
     public ISmartRenameItem,

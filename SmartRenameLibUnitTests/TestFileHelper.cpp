@@ -1,8 +1,11 @@
-#include "stdafx.h"
-#include "TestFileHelper.h"
-#include <iostream>
-#include <fstream>
-#include <Objbase.h>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "testfilehelper.h"
+
+//#include <iostream>
+//#include <fstream>
+//#include <Objbase.h>
 
 namespace fs = std::filesystem;
 

@@ -1,4 +1,9 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "srwlock.h"
+#include "SmartRenameInterfaces.h"
+#include "smartrenameitem.h"
 #include "MockSmartRenameItem.h"
 
 HRESULT CMockSmartRenameItem::CreateInstance(_In_opt_ PCWSTR path, _In_opt_ PCWSTR originalName, _In_ UINT depth, _In_ bool isFolder, _Outptr_ ISmartRenameItem** ppItem)

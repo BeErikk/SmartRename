@@ -1,7 +1,10 @@
-#include "stdafx.h"
-#include "CppUnitTest.h"
-#include <SmartRenameInterfaces.h>
-#include <SmartRenameRegEx.h>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include <CppUnitTest.h>
+#include "srwlock.h"
+#include "smartrenameinterfaces.h"
+#include "smartrenameregex.h"
 #include "MockSmartRenameRegExEvents.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -21,7 +24,7 @@ namespace SmartRenameRegExTests
     public:
         TEST_METHOD(GeneralReplaceTest)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             PWSTR result = nullptr;
             Assert::IsTrue(renameRegEx->put_searchTerm(L"foo") == S_OK);
@@ -33,7 +36,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(ReplaceNoMatch)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             PWSTR result = nullptr;
             Assert::IsTrue(renameRegEx->put_searchTerm(L"notfound") == S_OK);
@@ -45,7 +48,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(ReplaceNoSearchOrReplaceTerm)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             PWSTR result = nullptr;
             Assert::IsTrue(renameRegEx->Replace(L"foobar", &result) != S_OK);
@@ -55,7 +58,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(ReplaceNoReplaceTerm)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             PWSTR result = nullptr;
             Assert::IsTrue(renameRegEx->put_searchTerm(L"foo") == S_OK);
@@ -66,7 +69,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(ReplaceEmptyStringReplaceTerm)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             PWSTR result = nullptr;
             Assert::IsTrue(renameRegEx->put_searchTerm(L"foo") == S_OK);
@@ -78,7 +81,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyDefaultFlags)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = 0;
             Assert::IsTrue(renameRegEx->get_flags(&flags) == S_OK);
@@ -87,7 +90,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyCaseSensitiveSearch)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = CaseSensitive;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -113,7 +116,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceFirstOnly)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = 0;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -138,7 +141,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceAll)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = MatchAllOccurrences;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -163,7 +166,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceAllCaseInsensitive)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = MatchAllOccurrences | CaseSensitive;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -193,10 +196,10 @@ namespace SmartRenameRegExTests
     public:
         TEST_METHOD(VerifyEventsFire)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             CMockSmartRenameRegExEvents* mockEvents = new CMockSmartRenameRegExEvents();
-            CComPtr<ISmartRenameRegExEvents> regExEvents;
+            ATL::CComPtr<ISmartRenameRegExEvents> regExEvents;
             Assert::IsTrue(mockEvents->QueryInterface(IID_PPV_ARGS(&regExEvents)) == S_OK);
             DWORD cookie = 0;
             Assert::IsTrue(renameRegEx->Advise(regExEvents, &cookie) == S_OK);
@@ -217,7 +220,7 @@ namespace SmartRenameRegExTests
     public:
         TEST_METHOD(VerifyReplaceFirstOnlyUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -242,7 +245,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceAllUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = MatchAllOccurrences | UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -267,7 +270,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceAllUseRegExCaseSensitive)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = MatchAllOccurrences | UseRegularExpressions | CaseSensitive;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -292,7 +295,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyMatchAllWildcardUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = MatchAllOccurrences | UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -315,7 +318,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyReplaceFirstWildcardUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -338,7 +341,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyMatchBeginningTextUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);
@@ -363,7 +366,7 @@ namespace SmartRenameRegExTests
 
         TEST_METHOD(VerifyMatchEndingTextUseRegEx)
         {
-            CComPtr<ISmartRenameRegEx> renameRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renameRegEx;
             Assert::IsTrue(CSmartRenameRegEx::s_CreateInstance(&renameRegEx) == S_OK);
             DWORD flags = UseRegularExpressions;
             Assert::IsTrue(renameRegEx->put_flags(flags) == S_OK);

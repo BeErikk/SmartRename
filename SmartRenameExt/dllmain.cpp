@@ -1,4 +1,6 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
 #include "SmartRenameExt.h"
 
 DWORD g_dwModuleRefCount = 0;
@@ -112,7 +114,7 @@ STDAPI DllCanUnloadNow(void)
 //
 // DLL export for creating COM objects
 //
-STDAPI DllGetClassObject(_In_ REFCLSID clsid, _In_ REFIID riid, _Outptr_ void **ppv)
+STDAPI DllGetClassObject(_In_ REFCLSID clsid, _In_ REFIID riid, _Outptr_ void** ppv)
 {
     *ppv = NULL;
     HRESULT hr = E_OUTOFMEMORY;
@@ -125,12 +127,12 @@ STDAPI DllGetClassObject(_In_ REFCLSID clsid, _In_ REFIID riid, _Outptr_ void **
     return hr;
 }
 
-STDAPI DllRegisterServer()
+STDAPI DllRegisterServer(void)
 {
     return S_OK;
 }
 
-STDAPI DllUnregisterServer()
+STDAPI DllUnregisterServer(void)
 {
     return S_OK;
 }

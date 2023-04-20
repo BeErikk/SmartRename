@@ -1,8 +1,13 @@
-#include "stdafx.h"
-#include "SmartRenameRegEx.h"
-#include <regex>
-#include <string>
-#include <algorithm>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "smartrenameinterfaces.h"
+#include "srwlock.h"
+#include "smartrenameregex.h"
+
+//#include <regex>
+//#include <string>
+//#include <algorithm>
 
 
 using namespace std;

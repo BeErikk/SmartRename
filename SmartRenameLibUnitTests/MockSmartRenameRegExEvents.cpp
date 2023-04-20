@@ -1,4 +1,8 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "srwlock.h"
+#include "SmartRenameInterfaces.h"
 #include "MockSmartRenameRegExEvents.h"
 
 IFACEMETHODIMP_(ULONG) CMockSmartRenameRegExEvents::AddRef()

@@ -1,8 +1,11 @@
-#include "stdafx.h"
-#include "CppUnitTest.h"
-#include <SmartRenameInterfaces.h>
-#include <SmartRenameManager.h>
-#include <SmartRenameItem.h>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include <CppUnitTest.h>
+#include "srwlock.h"
+#include "SmartRenameInterfaces.h"
+#include "smartrenamemanager.h"
+#include "smartrenameitem.h"
 #include "MockSmartRenameItem.h"
 #include "MockSmartRenameManagerEvents.h"
 #include "TestFileHelper.h"
@@ -48,17 +51,17 @@ namespace SmartRenameManagerTests
                 }
             }
 
-            CComPtr<ISmartRenameManager> mgr;
+            ATL::CComPtr<ISmartRenameManager> mgr;
             Assert::IsTrue(CSmartRenameManager::s_CreateInstance(&mgr) == S_OK);
             CMockSmartRenameManagerEvents* mockMgrEvents = new CMockSmartRenameManagerEvents();
-            CComPtr<ISmartRenameManagerEvents> mgrEvents;
+            ATL::CComPtr<ISmartRenameManagerEvents> mgrEvents;
             Assert::IsTrue(mockMgrEvents->QueryInterface(IID_PPV_ARGS(&mgrEvents)) == S_OK);
             DWORD cookie = 0;
             Assert::IsTrue(mgr->Advise(mgrEvents, &cookie) == S_OK);
 
             for (int i = 0; i < numPairs; i++)
             {
-                CComPtr<ISmartRenameItem> item;
+                ATL::CComPtr<ISmartRenameItem> item;
                 CMockSmartRenameItem::CreateInstance(testFileHelper.GetFullPath(
                     renamePairs[i].originalName).c_str(),
                     renamePairs[i].originalName.c_str(),
@@ -78,7 +81,7 @@ namespace SmartRenameManagerTests
             }
 
             // TODO: Setup match and replace parameters
-            CComPtr<ISmartRenameRegEx> renRegEx;
+            ATL::CComPtr<ISmartRenameRegEx> renRegEx;
             Assert::IsTrue(mgr->get_renameRegEx(&renRegEx) == S_OK);
             renRegEx->put_flags(flags);
             renRegEx->put_searchTerm(searchTerm.c_str());
@@ -104,22 +107,22 @@ namespace SmartRenameManagerTests
         }
         TEST_METHOD(CreateTest)
         {
-            CComPtr<ISmartRenameManager> mgr;
+            ATL::CComPtr<ISmartRenameManager> mgr;
             Assert::IsTrue(CSmartRenameManager::s_CreateInstance(&mgr) == S_OK);
         }
 
         TEST_METHOD(CreateAndShutdownTest)
         {
-            CComPtr<ISmartRenameManager> mgr;
+            ATL::CComPtr<ISmartRenameManager> mgr;
             Assert::IsTrue(CSmartRenameManager::s_CreateInstance(&mgr) == S_OK);
             Assert::IsTrue(mgr->Shutdown() == S_OK);
         }
 
         TEST_METHOD(AddItemTest)
         {
-            CComPtr<ISmartRenameManager> mgr;
+            ATL::CComPtr<ISmartRenameManager> mgr;
             Assert::IsTrue(CSmartRenameManager::s_CreateInstance(&mgr) == S_OK);
-            CComPtr<ISmartRenameItem> item;
+            ATL::CComPtr<ISmartRenameItem> item;
             CMockSmartRenameItem::CreateInstance(L"foo", L"foo", 0, false, &item);
             mgr->AddItem(item);
             Assert::IsTrue(mgr->Shutdown() == S_OK);
@@ -127,14 +130,14 @@ namespace SmartRenameManagerTests
 
         TEST_METHOD(VerifySmartManagerEvents)
         {
-            CComPtr<ISmartRenameManager> mgr;
+            ATL::CComPtr<ISmartRenameManager> mgr;
             Assert::IsTrue(CSmartRenameManager::s_CreateInstance(&mgr) == S_OK);
             CMockSmartRenameManagerEvents* mockMgrEvents = new CMockSmartRenameManagerEvents();
-            CComPtr<ISmartRenameManagerEvents> mgrEvents;
+            ATL::CComPtr<ISmartRenameManagerEvents> mgrEvents;
             Assert::IsTrue(mockMgrEvents->QueryInterface(IID_PPV_ARGS(&mgrEvents)) == S_OK);
             DWORD cookie = 0;
             Assert::IsTrue(mgr->Advise(mgrEvents, &cookie) == S_OK);
-            CComPtr<ISmartRenameItem> item;
+            ATL::CComPtr<ISmartRenameItem> item;
             CMockSmartRenameItem::CreateInstance(L"foo", L"foo", 0, false, &item);
             int itemId = 0;
             Assert::IsTrue(item->get_id(&itemId) == S_OK);

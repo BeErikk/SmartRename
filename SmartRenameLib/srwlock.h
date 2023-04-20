@@ -1,5 +1,6 @@
 #pragma once
-#include "stdafx.h"
+
+// #include "smartrename_pch.h"
 
 // Wrapper around SRWLOCK
 class CSRWLock

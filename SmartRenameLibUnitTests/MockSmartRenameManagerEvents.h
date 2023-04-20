@@ -1,5 +1,6 @@
 #pragma once
-#include <SmartRenameInterfaces.h>
+
+//#include "smartrenameinterfaces.h"
 
 class CMockSmartRenameManagerEvents :
     public ISmartRenameManagerEvents
@@ -31,9 +32,9 @@ public:
     {
     }
 
-    CComPtr<ISmartRenameItem> m_itemAdded;
-    CComPtr<ISmartRenameItem> m_itemUpdated;
-    CComPtr<ISmartRenameItem> m_itemError;
+    ATL::CComPtr<ISmartRenameItem> m_itemAdded;
+    ATL::CComPtr<ISmartRenameItem> m_itemUpdated;
+    ATL::CComPtr<ISmartRenameItem> m_itemError;
     bool m_regExStarted = false;
     bool m_regExCanceled = false;
     bool m_regExCompleted = false;

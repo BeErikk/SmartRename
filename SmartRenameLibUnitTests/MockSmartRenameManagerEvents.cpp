@@ -1,4 +1,8 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "srwlock.h"
+#include "smartrenameinterfaces.h"
 #include "MockSmartRenameManagerEvents.h"
 
 // IUnknown

@@ -1,5 +1,9 @@
-#include "stdafx.h"
-#include "SmartRenameItem.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "smartrenameinterfaces.h"
+#include "srwlock.h"
+#include "smartrenameitem.h"
 #include "helpers.h"
 
 int CSmartRenameItem::s_id = 0;

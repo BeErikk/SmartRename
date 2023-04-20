@@ -1,5 +1,6 @@
 #pragma once
-#include "stdafx.h"
+
+//#include "smartrename_pch.h"
 
 enum SmartRenameFlags
 {
@@ -14,7 +15,7 @@ enum SmartRenameFlags
     ExtensionOnly = 0x100
 };
 
-interface __declspec(uuid("3ECBA62B-E0F0-4472-AA2E-DEE7A1AA46B9")) ISmartRenameRegExEvents : public IUnknown
+interface __declspec(novtable) __declspec(uuid("3ECBA62B-E0F0-4472-AA2E-DEE7A1AA46B9")) ISmartRenameRegExEvents : public IUnknown
 {
 public:
     IFACEMETHOD(OnSearchTermChanged)(_In_ PCWSTR searchTerm) = 0;
@@ -22,7 +23,7 @@ public:
     IFACEMETHOD(OnFlagsChanged)(_In_ DWORD flags) = 0;
 };
 
-interface __declspec(uuid("E3ED45B5-9CE0-47E2-A595-67EB950B9B72")) ISmartRenameRegEx : public IUnknown
+interface __declspec(novtable) __declspec(uuid("E3ED45B5-9CE0-47E2-A595-67EB950B9B72")) ISmartRenameRegEx : public IUnknown
 {
 public:
     IFACEMETHOD(Advise)(_In_ ISmartRenameRegExEvents* regExEvents, _Out_ DWORD* cookie) = 0;
@@ -36,7 +37,7 @@ public:
     IFACEMETHOD(Replace)(_In_ PCWSTR source, _Outptr_ PWSTR* result) = 0;
 };
 
-interface __declspec(uuid("C7F59201-4DE1-4855-A3A2-26FC3279C8A5")) ISmartRenameItem : public IUnknown
+interface __declspec(novtable) __declspec(uuid("C7F59201-4DE1-4855-A3A2-26FC3279C8A5")) ISmartRenameItem : public IUnknown
 {
 public:
     IFACEMETHOD(get_path)(_Outptr_ PWSTR* path) = 0;
@@ -56,13 +57,13 @@ public:
     IFACEMETHOD(Reset)() = 0;
 };
 
-interface __declspec(uuid("{26CBFFD9-13B3-424E-BAC9-D12B0539149C}")) ISmartRenameItemFactory : public IUnknown
+interface __declspec(novtable) __declspec(uuid("{26CBFFD9-13B3-424E-BAC9-D12B0539149C}")) ISmartRenameItemFactory : public IUnknown
 {
 public:
     IFACEMETHOD(Create)(_In_ IShellItem* psi, _COM_Outptr_ ISmartRenameItem** ppItem) = 0;
 };
 
-interface __declspec(uuid("87FC43F9-7634-43D9-99A5-20876AFCE4AD")) ISmartRenameManagerEvents : public IUnknown
+interface __declspec(novtable) __declspec(uuid("87FC43F9-7634-43D9-99A5-20876AFCE4AD")) ISmartRenameManagerEvents : public IUnknown
 {
 public:
     IFACEMETHOD(OnItemAdded)(_In_ ISmartRenameItem* renameItem) = 0;
@@ -75,7 +76,7 @@ public:
     IFACEMETHOD(OnRenameCompleted)() = 0;
 };
 
-interface __declspec(uuid("001BBD88-53D2-4FA6-95D2-F9A9FA4F9F70")) ISmartRenameManager : public IUnknown
+interface __declspec(novtable) __declspec(uuid("001BBD88-53D2-4FA6-95D2-F9A9FA4F9F70")) ISmartRenameManager : public IUnknown
 {
 public:
     IFACEMETHOD(Advise)(_In_ ISmartRenameManagerEvents* renameManagerEvent, _Out_ DWORD* cookie) = 0;
@@ -99,7 +100,7 @@ public:
     IFACEMETHOD(put_renameItemFactory)(_In_ ISmartRenameItemFactory* pItemFactory) = 0;
 };
 
-interface __declspec(uuid("E6679DEB-460D-42C1-A7A8-E25897061C99")) ISmartRenameUI : public IUnknown
+interface __declspec(novtable) __declspec(uuid("E6679DEB-460D-42C1-A7A8-E25897061C99")) ISmartRenameUI : public IUnknown
 {
 public:
     IFACEMETHOD(Show)(_In_opt_ HWND hwndParent) = 0;
@@ -107,13 +108,13 @@ public:
     IFACEMETHOD(Update)() = 0;
 };
 
-interface __declspec(uuid("04AAFABE-B76E-4E13-993A-B5941F52B139")) ISmartRenameMRU : public IUnknown
+interface __declspec(novtable) __declspec(uuid("04AAFABE-B76E-4E13-993A-B5941F52B139")) ISmartRenameMRU : public IUnknown
 {
 public:
     IFACEMETHOD(AddMRUString)(_In_ PCWSTR entry) = 0;
 };
 
-interface __declspec(uuid("2EFBAB41-A841-47B5-898B-B1CFBF151855")) ISmartRenameEnum : public IUnknown
+interface __declspec(novtable) __declspec(uuid("2EFBAB41-A841-47B5-898B-B1CFBF151855")) ISmartRenameEnum : public IUnknown
 {
 public:
     IFACEMETHOD(Start)() = 0;

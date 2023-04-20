@@ -1,6 +1,7 @@
 #pragma once
-#include <vector>
-#include "srwlock.h"
+
+//#include <vector>
+//#include "srwlock.h"
 
 class CMockSmartRenameRegExEvents:
     public ISmartRenameRegExEvents

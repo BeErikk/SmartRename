@@ -1,10 +1,14 @@
-#include "stdafx.h"
-#include "SmartRenameExt.h"
-#include <SmartRenameUI.h>
-#include <SmartRenameItem.h>
-#include <SmartRenameManager.h>
-#include <Helpers.h>
-#include <Settings.h>
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "smartrenameinterfaces.h"
+#include "srwlock.h"
+#include "smartrenameext.h"
+#include "smartrenameui.h"
+#include "smartrenameitem.h"
+#include "smartrenamemanager.h"
+#include "helpers.h"
+#include "settings.h"
 #include "resource.h"
 
 extern HINSTANCE g_hInst;
@@ -204,22 +208,22 @@ HRESULT CSmartRenameMenu::_InvokeInternal(_In_opt_ HWND hwndParent)
 DWORD WINAPI CSmartRenameMenu::s_SmartRenameUIThreadProc(_In_ void* pData)
 {
     InvokeStruct* pInvokeData = static_cast<InvokeStruct*>(pData);
-    CComPtr<IUnknown> spunk;
+    ATL::CComPtr<IUnknown> spunk;
     if (SUCCEEDED(CoGetInterfaceAndReleaseStream(pInvokeData->pstrm, IID_PPV_ARGS(&spunk))))
     {
         // Create the smart rename manager
-        CComPtr<ISmartRenameManager> spsrm;
+        ATL::CComPtr<ISmartRenameManager> spsrm;
         if (SUCCEEDED(CSmartRenameManager::s_CreateInstance(&spsrm)))
         {
             // Create the factory for our items
-            CComPtr<ISmartRenameItemFactory> spsrif;
+            ATL::CComPtr<ISmartRenameItemFactory> spsrif;
             if (SUCCEEDED(CSmartRenameItem::s_CreateInstance(nullptr, IID_PPV_ARGS(&spsrif))))
             {
                 // Pass the factory to the manager
                 if (SUCCEEDED(spsrm->put_renameItemFactory(spsrif)))
                 {
                     // Create the smart rename UI instance and pass the smart rename manager
-                    CComPtr<ISmartRenameUI> spsrui;
+                    ATL::CComPtr<ISmartRenameUI> spsrui;
                     if (SUCCEEDED(CSmartRenameUI::s_CreateInstance(spsrm, spunk, false, &spsrui)))
                     {
                         // Call blocks until we are done

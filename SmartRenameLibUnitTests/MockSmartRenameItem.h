@@ -1,7 +1,9 @@
 #pragma once
-#include "stdafx.h"
-#include <SmartRenameItem.h>
-#include "srwlock.h"
+
+//#include "smartrename_pch.h"
+//#include "common.h"
+//#include "smartrenameitem.h"
+//#include "srwlock.h"
 
 class CMockSmartRenameItem :
     public CSmartRenameItem

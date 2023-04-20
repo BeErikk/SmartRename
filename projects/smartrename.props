@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Label="PropertySheets" />
+  <PropertyGroup Label="UserMacros">
+    <smartrename_dir>../</smartrename_dir>
+    <resource_dir>../resources</resource_dir>
+    <IgnoreWarnIntDirInTempDetected>true</IgnoreWarnIntDirInTempDetected>
+  </PropertyGroup>
+  <PropertyGroup>
+    <_PropertySheetDisplayName>smartrename</_PropertySheetDisplayName>
+    <OutDir>$(SolutionDir)bin\$(PlatformName)_$(Configuration)\</OutDir>
+    <IntDir>$(TEMP)\$(SolutionName)\$(ProjectName)\$(PlatformName)_$(Configuration)\</IntDir>
+    <IncludePath>.;$(smartrename_dir)include;$(smartrename_dir)SmartRenameExt;$(smartrename_dir)SmartRenameLib;$(smartrename_dir)SmartRenameUI;$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <WarningLevel>EnableAllWarnings</WarningLevel>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <SDLCheck>true</SDLCheck>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Full</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <ControlFlowGuard>Guard</ControlFlowGuard>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <EnforceTypeConversionRules>true</EnforceTypeConversionRules>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <LanguageStandard_C>stdc17</LanguageStandard_C>
+      <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>smartrename_pch.h</PrecompiledHeaderFile>
+      <TreatAngleIncludeAsExternal>true</TreatAngleIncludeAsExternal>
+      <CallingConvention>StdCall</CallingConvention>
+      <AdditionalOptions>-utf-8 -Zo -Zc:__cplusplus -Zc:enumTypes -Zc:externConstexpr -Zc:lambda -Zc:throwingNew %(AdditionalOptions)</AdditionalOptions>
+      <SupportJustMyCode>true</SupportJustMyCode>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <UseStandardPreprocessor>true</UseStandardPreprocessor>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>kernel32.lib;ntdll.lib;comctl32.lib;pathcch.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+    <Link>
+      <DelayLoadDLLs>advapi32.dll;comdlg32.dll;ole32.dll;oleaut32.dll;shell32.dll;shlwapi.dll;%(DelayLoadDLLs)</DelayLoadDLLs>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <SetChecksum>true</SetChecksum>
+      <SupportUnloadOfDelayLoadedDLL>true</SupportUnloadOfDelayLoadedDLL>
+      <CETCompat>true</CETCompat>
+      <AdditionalOptions>-ignore:4078,4199 -pdbcompress %(AdditionalOptions)</AdditionalOptions>
+      <Version>2.0</Version>
+      <AdditionalLibraryDirectories>$(OutDir);$(IntDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Link>
+    <Lib>
+      <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <BuildMacro Include="smartrename_dir">
+      <Value>$(smartrename_dir)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="resource_dir">
+      <Value>$(resource_dir)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+    <BuildMacro Include="IgnoreWarnIntDirInTempDetected">
+      <Value>$(IgnoreWarnIntDirInTempDetected)</Value>
+      <EnvironmentVariable>true</EnvironmentVariable>
+    </BuildMacro>
+  </ItemGroup>
+</Project>

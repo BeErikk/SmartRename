@@ -1,14 +1,16 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
 #include "resource.h"
 #include "SmartRenameUI.h"
-#include <commctrl.h>
-#include <Shlobj.h>
-#include <helpers.h>
-#include <settings.h>
-#include <windowsx.h>
-#include <SmartRenameEnum.h>
+#include "helpers.h"
+#include "settings.h"
+#include "smartrenameenum.h"
 
-#include <thread>
+//#include <commctrl.h>
+//#include <Shlobj.h>
+//#include <thread>
+#include <windowsx.h>
 
 extern HINSTANCE g_hInst;
 
@@ -452,7 +454,7 @@ HRESULT CSmartRenameUI::_WriteSettings()
 
         if (CSettings::GetMRUEnabled() && m_spSearchACL)
         {
-            CComPtr<ISmartRenameMRU> spSearchMRU;
+            ATL::CComPtr<ISmartRenameMRU> spSearchMRU;
             if (SUCCEEDED(m_spSearchACL->QueryInterface(IID_PPV_ARGS(&spSearchMRU))))
             {
                 spSearchMRU->AddMRUString(buffer);
@@ -465,7 +467,7 @@ HRESULT CSmartRenameUI::_WriteSettings()
 
         if (CSettings::GetMRUEnabled() && m_spReplaceACL)
         {
-            CComPtr<ISmartRenameMRU> spReplaceMRU;
+            ATL::CComPtr<ISmartRenameMRU> spReplaceMRU;
             if (SUCCEEDED(m_spReplaceACL->QueryInterface(IID_PPV_ARGS(&spReplaceMRU))))
             {
                 spReplaceMRU->AddMRUString(buffer);
@@ -849,7 +851,7 @@ void CSmartRenameUI::_MoveControl(_In_ DWORD id, _In_ DWORD repositionFlags, _In
 void CSmartRenameUI::_OnSearchReplaceChanged()
 {
     // Pass updated search and replace terms to the ISmartRenameRegEx handler
-    CComPtr<ISmartRenameRegEx> spRegEx;
+    ATL::CComPtr<ISmartRenameRegEx> spRegEx;
     if (m_spsrm && SUCCEEDED(m_spsrm->get_renameRegEx(&spRegEx)))
     {
         wchar_t buffer[MAX_INPUT_STRING_LEN];
@@ -983,7 +985,7 @@ void CSmartRenameListView::ToggleAll(_In_ ISmartRenameManager* psrm, _In_ bool s
         psrm->GetItemCount(&itemCount);
         for (UINT i = 0; i < itemCount; i++)
         {
-            CComPtr<ISmartRenameItem> spItem;
+            ATL::CComPtr<ISmartRenameItem> spItem;
             if (SUCCEEDED(psrm->GetItemByIndex(i, &spItem)))
             {
                 spItem->put_selected(selected);
@@ -996,7 +998,7 @@ void CSmartRenameListView::ToggleAll(_In_ ISmartRenameManager* psrm, _In_ bool s
 
 void CSmartRenameListView::ToggleItem(_In_ ISmartRenameManager* psrm, _In_ int item)
 {
-    CComPtr<ISmartRenameItem> spItem;
+    ATL::CComPtr<ISmartRenameItem> spItem;
     if (SUCCEEDED(psrm->GetItemByIndex(item, &spItem)))
     {
         bool selected = false;
@@ -1040,7 +1042,7 @@ void CSmartRenameListView::UpdateItemCheckState(_In_ ISmartRenameManager* psrm, 
 {
     if (psrm && m_hwndLV && (iItem > -1))
     {
-        CComPtr<ISmartRenameItem> spItem;
+        ATL::CComPtr<ISmartRenameItem> spItem;
         if (SUCCEEDED(psrm->GetItemByIndex(iItem, &spItem)))
         {
             bool checked = ListView_GetCheckState(m_hwndLV, iItem);
@@ -1076,7 +1078,7 @@ void CSmartRenameListView::GetDisplayInfo(_In_ ISmartRenameManager* psrm, _Inout
         return;
     }
 
-    CComPtr<ISmartRenameItem> renameItem;
+    ATL::CComPtr<ISmartRenameItem> renameItem;
     if (SUCCEEDED(psrm->GetItemByIndex((int)plvdi->item.iItem, &renameItem)))
     {
         if (plvdi->item.mask & LVIF_IMAGE)
@@ -1295,7 +1297,7 @@ DWORD WINAPI CSmartRenameProgressUI::s_workerThread(_In_ void* pv)
 
             SetTimer(hwndMessage, TIMERID_CHECKCANCELED, CANCEL_CHECK_INTERVAL, nullptr);
 
-            CComPtr<IProgressDialog> sppd;
+            ATL::CComPtr<IProgressDialog> sppd;
             if (SUCCEEDED(CoCreateInstance(CLSID_ProgressDialog, NULL, CLSCTX_INPROC, IID_PPV_ARGS(&sppd))))
             {
                 pThis->m_sppd = sppd;

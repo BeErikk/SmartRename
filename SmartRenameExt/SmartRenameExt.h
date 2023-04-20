@@ -1,5 +1,8 @@
 #pragma once
-#include "stdafx.h"
+//#include "smartrename_pch.h"
+
+// {81ADB5B6-F9A4-4320-87B3-D9360F82EC50}
+DEFINE_GUID(CLSID_SmartRenameMenu, 0x81ADB5B6, 0xF9A4, 0x4320, 0x87, 0xB3, 0xD9, 0x36, 0x0F, 0x82, 0xEC, 0x50);
 
 class CSmartRenameMenu :
     public IShellExtInit,
@@ -74,7 +77,9 @@ private:
 
     long m_refCount = 1;
     HBITMAP m_hbmpIcon = NULL;
-    CComPtr<IShellItemArray> m_spia;
-    CComPtr<IUnknown> m_spSite;
+    ATL::CComPtr<IShellItemArray> m_spia;
+    ATL::CComPtr<IUnknown> m_spSite;
 };
 
+extern void DllAddRef(void);
+extern void DllRelease(void);

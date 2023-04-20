@@ -1,7 +1,12 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
+#include "smartrenameinterfaces.h"
+#include "srwlock.h"
 #include "SmartRenameEnum.h"
 #include "helpers.h"
-#include <ShlGuid.h>
+
+//#include <ShlGuid.h>
 
 IFACEMETHODIMP_(ULONG) CSmartRenameEnum::AddRef()
 {
@@ -31,11 +36,11 @@ IFACEMETHODIMP CSmartRenameEnum::QueryInterface(_In_ REFIID riid, _Outptr_ void*
 IFACEMETHODIMP CSmartRenameEnum::Start()
 {
     m_canceled = false;
-    CComPtr<IShellItemArray> spsia;
+    ATL::CComPtr<IShellItemArray> spsia;
     HRESULT hr = GetShellItemArrayFromUnknown(m_spunk, &spsia);
     if (SUCCEEDED(hr))
     {
-        CComPtr<IEnumShellItems> spesi;
+        ATL::CComPtr<IEnumShellItems> spesi;
         hr = spsia->EnumItems(&spesi);
         if (SUCCEEDED(hr))
         {
@@ -98,7 +103,7 @@ HRESULT CSmartRenameEnum::_ParseEnumItems(_In_ IEnumShellItems* pesi, _In_ int d
         hr = S_OK;
 
         ULONG celtFetched;
-        CComPtr<IShellItem> spsi;
+        ATL::CComPtr<IShellItem> spsi;
         while ((S_OK == pesi->Next(1, &spsi, &celtFetched)) && (SUCCEEDED(hr)))
         {
             if (m_canceled)
@@ -106,11 +111,11 @@ HRESULT CSmartRenameEnum::_ParseEnumItems(_In_ IEnumShellItems* pesi, _In_ int d
                 return E_ABORT;
             }
 
-            CComPtr<ISmartRenameItemFactory> spsrif;
+            ATL::CComPtr<ISmartRenameItemFactory> spsrif;
             hr = m_spsrm->get_renameItemFactory(&spsrif);
             if (SUCCEEDED(hr))
             {
-                CComPtr<ISmartRenameItem> spNewItem;
+                ATL::CComPtr<ISmartRenameItem> spNewItem;
                 // Failure may be valid if we come across a shell item that does
                 // not support a file system path.  In that case we simply ignore
                 // the item.
@@ -124,7 +129,7 @@ HRESULT CSmartRenameEnum::_ParseEnumItems(_In_ IEnumShellItems* pesi, _In_ int d
                         if (SUCCEEDED(spNewItem->get_isFolder(&isFolder)) && isFolder)
                         {
                             // Bind to the IShellItem for the IEnumShellItems interface
-                            CComPtr<IEnumShellItems> spesiNext;
+                            ATL::CComPtr<IEnumShellItems> spesiNext;
                             hr = spsi->BindToHandler(nullptr, BHID_EnumItems, IID_PPV_ARGS(&spesiNext));
                             if (SUCCEEDED(hr))
                             {

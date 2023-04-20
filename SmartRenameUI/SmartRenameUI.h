@@ -1,5 +1,5 @@
 #pragma once
-#include <SmartRenameInterfaces.h>
+#include "smartrenameinterfaces.h"
 #include <shldisp.h>
 #include <atomic>
 
@@ -62,7 +62,7 @@ private:
     bool m_canceled = false;
     std::atomic<bool> m_loadingThread{ false };
     HANDLE m_workerThreadHandle = nullptr;
-    CComPtr<IProgressDialog> m_sppd;
+    ATL::CComPtr<IProgressDialog> m_sppd;
 };
 
 class CSmartRenameUI :
@@ -173,13 +173,13 @@ private:
     int m_lastWidth = 0;
     int m_lastHeight = 0;
     CSmartRenameProgressUI m_srpui;
-    CComPtr<ISmartRenameManager> m_spsrm;
-    CComPtr<ISmartRenameEnum> m_spsre;
-    CComPtr<IUnknown> m_spunk;
-    CComPtr<IDropTargetHelper> m_spdth;
-    CComPtr<IAutoComplete2> m_spSearchAC;
-    CComPtr<IUnknown> m_spSearchACL;
-    CComPtr<IAutoComplete2> m_spReplaceAC;
-    CComPtr<IUnknown> m_spReplaceACL;
+    ATL::CComPtr<ISmartRenameManager> m_spsrm;
+    ATL::CComPtr<ISmartRenameEnum> m_spsre;
+    ATL::CComPtr<IUnknown> m_spunk;
+    ATL::CComPtr<IDropTargetHelper> m_spdth;
+    ATL::CComPtr<IAutoComplete2> m_spSearchAC;
+    ATL::CComPtr<IUnknown> m_spSearchACL;
+    ATL::CComPtr<IAutoComplete2> m_spReplaceAC;
+    ATL::CComPtr<IUnknown> m_spReplaceACL;
     CSmartRenameListView m_listview;
 };

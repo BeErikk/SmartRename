@@ -1,8 +1,9 @@
 #pragma once
-#include "stdafx.h"
-#include "SmartRenameInterfaces.h"
-#include <vector>
-#include "srwlock.h"
+
+//#include "smartrename_pch.h"
+//#include "smartrenameinterfaces.h"
+//#include <vector>
+//#include "srwlock.h"
 
 class CSmartRenameEnum :
     public ISmartRenameEnum
@@ -27,8 +28,8 @@ protected:
     HRESULT _Init(_In_ IUnknown* punk, _In_ ISmartRenameManager* psrm);
     HRESULT _ParseEnumItems(_In_ IEnumShellItems* pesi, _In_ int depth = 0);
 
-    CComPtr<ISmartRenameManager> m_spsrm;
-    CComPtr<IUnknown> m_spunk;
+    ATL::CComPtr<ISmartRenameManager> m_spsrm;
+    ATL::CComPtr<IUnknown> m_spunk;
     bool m_canceled = false;
     long m_refCount = 0;
 };

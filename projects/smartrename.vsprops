@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioPropertySheet
+	ProjectType="Visual C++"
+	Version="8.00"
+	Name="smartrename"
+	OutputDirectory="$(SolutionDir)bin\$(PlatformName)_$(ConfigurationName)\"
+	IntermediateDirectory="$(TEMP)\$(SolutionName)\$(ProjectName)\$(PlatformName)_$(ConfigurationName)\"
+	>
+	<Tool
+		Name="VCCLCompilerTool"
+		AdditionalOptions="-Wall -MP -sdl -utf-8 -guard:cf -Zo -std:c++latest -permissive- -Zc:__cplusplus -Zc:enumTypes -Zc:externConstexpr -Zc:inline -Zc:lambda -Zc:preprocessor -Zc:throwingNew"
+		Optimization="3"
+		EnableIntrinsicFunctions="true"
+		FavorSizeOrSpeed="2"
+		OmitFramePointers="true"
+		AdditionalIncludeDirectories=".;$(IntDir);$(smartrename_dir)include;$(smartrename_dir)SmartRenameExt;$(smartrename_dir)SmartRenameLib;$(smartrename_dir)SmartRenameUI"
+		PreprocessorDefinitions=""
+		StringPooling="true"
+		RuntimeLibrary="2"
+		EnableFunctionLevelLinking="true"
+		UsePrecompiledHeader="2"
+		PrecompiledHeaderThrough="smartrename_pch.h"
+		DebugInformationFormat="1"
+		CallingConvention="2"
+		ForcedIncludeFiles="smartrename_pch.h"
+	/>
+	<Tool
+		Name="VCLibrarianTool"
+		IgnoreAllDefaultLibraries="true"
+	/>
+	<Tool
+		Name="VCLinkerTool"
+		AdditionalOptions="-ignore:4078,4199 -pdbcompress"
+		AdditionalDependencies="kernel32.lib ntdll.lib comctl32.lib pathcch.lib shcore.lib"
+		Version="1.2"
+		AdditionalLibraryDirectories="$(OutDir);$(IntDir)"
+		GenerateDebugInformation="true"
+		SubSystem="2"
+		OptimizeReferences="2"
+		EnableCOMDATFolding="2"
+		SetChecksum="true"
+		SupportUnloadOfDelayLoadedDLL="true"
+	/>
+	<Tool
+		Name="VCMIDLTool"
+		GenerateStublessProxies="true"
+		TypeLibraryName="$(IntDir)$(TargetName).tlb"
+		HeaderFileName="$(IntDir)$(TargetName)_i.h"
+		DLLDataFileName=""
+		InterfaceIdentifierFileName="$(IntDir)$(TargetName)_i.c"
+		ProxyFileName="$(IntDir)$(TargetName)_p.c"
+	/>
+	<Tool
+		Name="VCResourceCompilerTool"
+		PreprocessorDefinitions="APP_NAME=\&quot;$(TargetName)\&quot;;PLATFORM=$(PlatformName);$(PlatformName)"
+		AdditionalIncludeDirectories="$(IntDir)"
+	/>
+	<UserMacro
+		Name="smartrename_dir"
+		Value="../"
+		PerformEnvironmentSet="true"
+	/>
+</VisualStudioPropertySheet>

@@ -1,6 +1,9 @@
-#include "stdafx.h"
+#include "smartrename_pch.h"
+#include "common.h"
+
 #include "Helpers.h"
-#include <ShlGuid.h>
+
+//#include <ShlGuid.h>
 
 HRESULT GetIconIndexFromPath(_In_ PCWSTR path, _Out_ int* index)
 {
@@ -10,7 +13,7 @@ HRESULT GetIconIndexFromPath(_In_ PCWSTR path, _Out_ int* index)
 
     SHFILEINFO shFileInfo = { 0 };
 
-    if (!PathIsRelative(path))
+    if (!::PathIsRelativeW(path))
     {
         DWORD attrib = GetFileAttributes(path);
         HIMAGELIST himl = (HIMAGELIST)SHGetFileInfo(path, attrib, &shFileInfo, sizeof(shFileInfo), (SHGFI_SYSICONINDEX | SHGFI_SMALLICON | SHGFI_USEFILEATTRIBUTES));
@@ -93,7 +96,7 @@ HBITMAP CreateBitmapFromIcon(_In_ HICON hIcon, _In_opt_ UINT width, _In_opt_ UIN
 HWND CreateMsgWindow(_In_ HINSTANCE hInst, _In_ WNDPROC pfnWndProc, _In_ void* p)
 {
     WNDCLASS wc = { 0 };
-    PWSTR wndClassName = L"MsgWindow";
+    PCWSTR wndClassName = L"MsgWindow";
 
     wc.lpfnWndProc = DefWindowProc;
     wc.cbWndExtra = sizeof(void*);
@@ -122,7 +125,7 @@ HWND CreateMsgWindow(_In_ HINSTANCE hInst, _In_ WNDPROC pfnWndProc, _In_ void* p
 HRESULT GetShellItemArrayFromUnknown(_In_ IUnknown* punk, _COM_Outptr_ IShellItemArray** ppsia)
 {
     *ppsia = nullptr;
-    CComPtr<IDataObject> spdo;
+    ATL::CComPtr<IDataObject> spdo;
     HRESULT hr;
     if (SUCCEEDED(punk->QueryInterface(IID_PPV_ARGS(&spdo))))
     {

@@ -129,10 +129,10 @@ MSDISABLE_WARNING_POP
 
 MSDISABLE_WARNING_PUSH(4191 4265 4355 4365 4514 4619 4625 4626 4668 4710 4820 5026 5027 5039 5045 5204 5220 5264 6001 26451)
 #include <strsafe.h>
-//#include <wil/result.h>
-//#include <wil/resource.h>
-//#include <wil/com.h>
-//#include <wil/win32_helpers.h>
+#include <wil/result.h>
+#include <wil/resource.h>
+#include <wil/com.h>
+#include <wil/win32_helpers.h>
 //#include <wil/cppwinrt.h>
 //#include <wrl/wrappers/corewrappers.h>
 MSDISABLE_WARNING_POP

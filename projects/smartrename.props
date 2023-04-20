@@ -11,6 +11,7 @@
     <OutDir>$(SolutionDir)bin\$(PlatformName)_$(Configuration)\</OutDir>
     <IntDir>$(TEMP)\$(SolutionName)\$(ProjectName)\$(PlatformName)_$(Configuration)\</IntDir>
     <IncludePath>.;$(smartrename_dir)include;$(smartrename_dir)SmartRenameExt;$(smartrename_dir)SmartRenameLib;$(smartrename_dir)SmartRenameUI;$(IncludePath)</IncludePath>
+    <ExternalIncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(CodeLibraries)include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

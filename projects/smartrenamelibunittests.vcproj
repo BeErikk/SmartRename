@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="smartrenameext"
-	ProjectGUID="{14367308-EC25-4D42-A2DA-2582C99F6DCC}"
+	Name="smartrenamelibunittests"
+	ProjectGUID="{2151F984-E006-4A9F-92EF-C6DDE3DC8413}"
 	RootNamespace="powertoys"
 	Keyword="AtlProj"
 	TargetFrameworkVersion="0"
@@ -49,7 +49,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="0"
 				OmitFramePointers="false"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_WINDLL"
 				StringPooling="false"
 				BasicRuntimeChecks="3"
@@ -74,9 +73,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="0"
@@ -137,7 +135,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="0"
 				OmitFramePointers="false"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_WINDLL"
 				StringPooling="false"
 				BasicRuntimeChecks="3"
@@ -162,9 +159,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="0"
@@ -226,7 +222,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_WINDLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -250,10 +245,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
 				Version="1.1"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -315,7 +309,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_WINDLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -339,10 +332,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
 				Version="1.1"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -383,10 +375,22 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenamelibunittests"
 				>
 				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.h"
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameItem.h"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameManagerEvents.h"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameRegExEvents.h"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\TestFileHelper.h"
 					>
 				</File>
 			</Filter>
@@ -397,14 +401,30 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenamelibunittests"
 				>
 				<File
-					RelativePath="..\SmartRenameExt\dllmain.cpp"
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameItem.cpp"
 					>
 				</File>
 				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.cpp"
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameManagerEvents.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\MockSmartRenameRegExEvents.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\SmartRenameManagerTests.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\SmartRenameRegExTests.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameLibUnitTests\TestFileHelper.cpp"
 					>
 				</File>
 			</Filter>
@@ -415,16 +435,8 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenamelibunittests"
 				>
-				<File
-					RelativePath="..\SmartRenameExt\resource.h"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.rc"
-					>
-				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -432,10 +444,6 @@
 			Filter="def;vsprops;txt;mak;in;hpj;bat"
 			UniqueIdentifier="{EE89365A-C086-4bb4-98C3-6AF90833C39C}"
 			>
-			<File
-				RelativePath="..\SmartRenameExt\SmartRenameExt.def"
-				>
-			</File>
 			<Filter
 				Name="precompiled"
 				>

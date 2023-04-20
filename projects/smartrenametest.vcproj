@@ -2,8 +2,8 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="smartrenameext"
-	ProjectGUID="{14367308-EC25-4D42-A2DA-2582C99F6DCC}"
+	Name="smartrenametest"
+	ProjectGUID="{A3935CF4-46C5-4A88-84D3-6B12E16E6BA2}"
 	RootNamespace="powertoys"
 	Keyword="AtlProj"
 	TargetFrameworkVersion="0"
@@ -22,7 +22,7 @@
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			InheritedPropertySheets=".\smartrename.vsprops"
 			UseOfATL="0"
 			CharacterSet="1"
@@ -49,7 +49,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="0"
 				OmitFramePointers="false"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_WINDLL"
 				StringPooling="false"
 				BasicRuntimeChecks="3"
@@ -74,9 +73,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="0"
@@ -110,7 +108,7 @@
 		<Configuration
 			Name="Debug|x64"
 			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			InheritedPropertySheets=".\smartrename.vsprops"
 			UseOfATL="0"
 			CharacterSet="1"
@@ -137,7 +135,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="0"
 				OmitFramePointers="false"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;_DEBUG;_WINDLL"
 				StringPooling="false"
 				BasicRuntimeChecks="3"
@@ -162,9 +159,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="0"
@@ -198,7 +194,7 @@
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			InheritedPropertySheets=".\smartrename.vsprops"
 			UseOfATL="0"
 			CharacterSet="1"
@@ -226,7 +222,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_WINDLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -250,10 +245,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
 				Version="1.1"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -287,7 +281,7 @@
 		<Configuration
 			Name="Release|x64"
 			OutputDirectory="..\bin\$(PlatformName)_$(ConfigurationName)\"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			InheritedPropertySheets=".\smartrename.vsprops"
 			UseOfATL="0"
 			CharacterSet="1"
@@ -315,7 +309,6 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="2"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories=""
 				PreprocessorDefinitions="WIN32;_WINDOWS;NDEBUG;_WINDLL"
 				StringPooling="true"
 				RuntimeLibrary="2"
@@ -339,10 +332,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib smartrenameui.res"
+				AdditionalDependencies="smartrenamelib.lib smartrenameui.lib"
 				Version="1.1"
-				ModuleDefinitionFile="$(smartrename_dir)SmartRenameExt/smartrenameext.def"
-				DelayLoadDLLs=""
+				ModuleDefinitionFile=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -383,10 +375,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenametest"
 				>
 				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.h"
+					RelativePath="..\SmartRenameTest\SmartRenameTest.h"
 					>
 				</File>
 			</Filter>
@@ -397,14 +389,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenametest"
 				>
 				<File
-					RelativePath="..\SmartRenameExt\dllmain.cpp"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.cpp"
+					RelativePath="..\SmartRenameTest\SmartRenameTest.cpp"
 					>
 				</File>
 			</Filter>
@@ -415,14 +403,22 @@
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}"
 			>
 			<Filter
-				Name="smartrenameext"
+				Name="smartrenametest"
 				>
 				<File
-					RelativePath="..\SmartRenameExt\resource.h"
+					RelativePath="..\SmartRenameTest\resource.h"
 					>
 				</File>
 				<File
-					RelativePath="..\SmartRenameExt\SmartRenameExt.rc"
+					RelativePath="..\SmartRenameTest\small.ico"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameTest\SmartRenameTest.ico"
+					>
+				</File>
+				<File
+					RelativePath="..\SmartRenameTest\SmartRenameTest.rc"
 					>
 				</File>
 			</Filter>
@@ -432,10 +428,6 @@
 			Filter="def;vsprops;txt;mak;in;hpj;bat"
 			UniqueIdentifier="{EE89365A-C086-4bb4-98C3-6AF90833C39C}"
 			>
-			<File
-				RelativePath="..\SmartRenameExt\SmartRenameExt.def"
-				>
-			</File>
 			<Filter
 				Name="precompiled"
 				>

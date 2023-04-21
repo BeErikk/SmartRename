@@ -5,10 +5,9 @@
 //#include "smartrenameitem.h"
 //#include "srwlock.h"
 
-class CMockSmartRenameItem :
-    public CSmartRenameItem
+class CMockSmartRenameItem : public CSmartRenameItem
 {
 public:
-    static HRESULT CreateInstance(_In_opt_ PCWSTR path, _In_opt_ PCWSTR originalName, _In_ UINT depth, _In_ bool isFolder, _Outptr_ ISmartRenameItem** ppItem);
-    void Init(_In_opt_ PCWSTR path, _In_opt_ PCWSTR originalName, _In_ UINT depth, _In_ bool isFolder);
+	static HRESULT CreateInstance(_In_opt_ PCWSTR path, _In_opt_ PCWSTR originalName, _In_ uint32_t depth, _In_ bool isFolder, _Outptr_ ISmartRenameItem** ppItem);
+	void Init(_In_opt_ PCWSTR path, _In_opt_ PCWSTR originalName, _In_ uint32_t depth, _In_ bool isFolder);
 };

@@ -390,6 +390,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="common"
+				>
+				<File
+					RelativePath="..\include\common.h"
+					>
+				</File>
+				<File
+					RelativePath="..\include\iunknownimpl.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Sources"

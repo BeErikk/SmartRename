@@ -382,6 +382,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="common"
+				>
+				<File
+					RelativePath="..\include\common.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Sources"

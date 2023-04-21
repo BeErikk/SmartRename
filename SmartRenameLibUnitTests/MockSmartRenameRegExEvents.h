@@ -3,35 +3,36 @@
 //#include <vector>
 //#include "srwlock.h"
 
-class CMockSmartRenameRegExEvents:
-    public ISmartRenameRegExEvents
+class CMockSmartRenameRegExEvents : public ISmartRenameRegExEvents
 {
 public:
-    // IUnknown
-    IFACEMETHODIMP  QueryInterface(_In_ REFIID iid, _Outptr_ void** resultInterface);
-    IFACEMETHODIMP_(ULONG) AddRef();
-    IFACEMETHODIMP_(ULONG) Release();
+	// IUnknown
+	IFACEMETHODIMP QueryInterface(_In_ REFIID iid, _Outptr_ void** resultInterface);
+	IFACEMETHODIMP_(ULONG)
+	AddRef();
+	IFACEMETHODIMP_(ULONG)
+	Release();
 
-    // ISmartRenameRegExEvents
-    IFACEMETHODIMP OnSearchTermChanged(_In_ PCWSTR searchTerm);
-    IFACEMETHODIMP OnReplaceTermChanged(_In_ PCWSTR replaceTerm);
-    IFACEMETHODIMP OnFlagsChanged(_In_ DWORD flags);
+	// ISmartRenameRegExEvents
+	IFACEMETHODIMP OnSearchTermChanged(_In_ PCWSTR searchTerm);
+	IFACEMETHODIMP OnReplaceTermChanged(_In_ PCWSTR replaceTerm);
+	IFACEMETHODIMP OnFlagsChanged(_In_ uint32_t flags);
 
-    static HRESULT s_CreateInstance(_Outptr_ ISmartRenameRegExEvents** ppsrree);
+	static HRESULT s_CreateInstance(_Outptr_ ISmartRenameRegExEvents** ppsrree);
 
-    CMockSmartRenameRegExEvents() :
-        m_refCount(1)
-    {
-    }
+	CMockSmartRenameRegExEvents()
+		: m_refCount(1)
+	{
+	}
 
-    ~CMockSmartRenameRegExEvents()
-    {
-        CoTaskMemFree(m_searchTerm);
-        CoTaskMemFree(m_replaceTerm);
-    }
+	~CMockSmartRenameRegExEvents()
+	{
+		CoTaskMemFree(m_searchTerm);
+		CoTaskMemFree(m_replaceTerm);
+	}
 
-    PWSTR m_searchTerm = nullptr;
-    PWSTR m_replaceTerm = nullptr;
-    DWORD m_flags = 0;
-    long m_refCount;
+	PWSTR m_searchTerm = nullptr;
+	PWSTR m_replaceTerm = nullptr;
+	uint32_t m_flags = 0;
+	long m_refCount;
 };

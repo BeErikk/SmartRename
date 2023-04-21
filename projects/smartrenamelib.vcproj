@@ -61,7 +61,6 @@
 				DebugInformationFormat="1"
 				CallingConvention="2"
 				ForcedIncludeFiles="smartrename_pch.h"
-				EnablePREfast="true"
 				OmitDefaultLibName="true"
 			/>
 			<Tool
@@ -355,6 +354,14 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="common"
+				>
+				<File
+					RelativePath="..\include\common.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Sources"
@@ -446,14 +453,6 @@
 				</File>
 				<File
 					RelativePath="smartrename_pch.h"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameLib\stdafx.h"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameLib\targetver.h"
 					>
 				</File>
 			</Filter>

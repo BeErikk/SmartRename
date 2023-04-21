@@ -57,7 +57,6 @@
 				DebugInformationFormat="3"
 				CallingConvention="2"
 				ForcedIncludeFiles="smartrename_pch.h"
-				EnablePREfast="true"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -363,13 +362,21 @@
 			Filter="h;hh;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\SmartRenameUI\SmartRenameUI.h"
-				>
-			</File>
 			<Filter
 				Name="smartrenameui"
 				>
+				<File
+					RelativePath="..\SmartRenameUI\SmartRenameUI.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="common"
+				>
+				<File
+					RelativePath="..\include\common.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 		<Filter
@@ -454,14 +461,6 @@
 				</File>
 				<File
 					RelativePath="smartrename_pch.h"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameUI\stdafx.h"
-					>
-				</File>
-				<File
-					RelativePath="..\SmartRenameUI\targetver.h"
 					>
 				</File>
 			</Filter>
